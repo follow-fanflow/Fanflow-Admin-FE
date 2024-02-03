@@ -1,1 +1,6 @@
-export { };
+
+export const Login = () => {
+    return (
+        <></>
+    )
+}
