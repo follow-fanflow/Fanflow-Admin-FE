@@ -54,9 +54,7 @@ export const Header = () => {
         <Position>
             <Layout>
                 <Left>
-                    <Nav to="/">
-                        <Img src={textLogo} alt="" />
-                    </Nav>
+                    <Img src={textLogo} alt="" />
                     <NavWrap>
                         <Nav to="/schedule">
                             <Celender />
@@ -68,9 +66,7 @@ export const Header = () => {
                         </Nav>
                     </NavWrap>
                 </Left>
-                <Nav to="/profile">
-                    <Img src={profile} alt="" />
-                </Nav>
+                <Img src={profile} alt="" />
             </Layout>
         </Position>
     );
