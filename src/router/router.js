@@ -4,7 +4,7 @@ import { Login } from "../pages/login";
 import { Schedule } from "../pages/schedule";
 import { Header } from "../components/header";
 
-export const Router = () => {
+export const Router = () => { 
   return (
     <BrowserRouter>
       <Routes>
