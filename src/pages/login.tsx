@@ -18,7 +18,7 @@ export const Login = () => {
                 <InputWrap>
                     <Input placeholder="아이디" onChange={handleFocus} width='318px' height='42px' />
                     <Input type="password" placeholder="비밀번호" onChange={handleFocus} width="318px" height='42px' />
-                    <Button width={318} height={35} backgroundColor="#F96C85" content="로그인" hoverColor="#ff4467"/>
+                    <Button width={318} height={35} backgroundColor="#F96C85" content="로그인" hoverColor="#ff4467" />
                 </InputWrap>
             </Box>
         </LoginWrap>

@@ -26,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({
     content,
     buttonStyle,
 }) => {
-    const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
     const defaultButtonStyle: React.CSSProperties = {
         width: `${width}px`,
@@ -43,18 +43,18 @@ const Button: React.FC<ButtonProps> = ({
         color: textColor,
     };
 
-    const mergedButtonStyle = {
-        ...defaultButtonStyle,
-        ...buttonStyle,
-    };
+  const mergedButtonStyle = {
+    ...defaultButtonStyle,
+    ...buttonStyle,
+  };
 
-    const handleHover = () => {
-        setIsHovered(true);
-    };
+  const handleHover = () => {
+    setIsHovered(true);
+  };
 
-    const handleLeave = () => {
-        setIsHovered(false);
-    };
+  const handleLeave = () => {
+    setIsHovered(false);
+  };
 
     if (to) {
         return (
