@@ -18,20 +18,24 @@ function Map() {
                 const mapContainer = document.getElementById('map');
                 const mapOption = {
                     center: new window.kakao.maps.LatLng(35.9078, 127.7669),
-                    level: 13,
-                    draggable: false,
+                    level: 12,
+                    draggable: true,
                     disableDoubleClick: true,
                     disableZoom: true
                 };
 
                 const map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+                map.setZoomable(false);
+                map.setDraggable(true);
+
                 const markerPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
 
                 const marker = new window.kakao.maps.Marker({
                     map: map,
                     position: markerPosition,
                 });
-
+                
                 marker.setMap(map);
 
                 let infowindow: any = null; 
@@ -53,7 +57,7 @@ function Map() {
     }, []);
 
     return (
-        <div id="map" style={{ width: "1400px", height: "840px" }}></div>
+        <div id="map" style={{ width: "2000px", height: "840px" }}></div>
     )
 }
 
