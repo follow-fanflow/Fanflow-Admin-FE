@@ -7,12 +7,12 @@ declare global {
 }
 
 function Map() {
-    const mapScript = document.createElement("script");
-    mapScript.async = true;
-    mapScript.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=67d0286911f77cf3ceabfd3161f18840&autoload=false&libraries=services,clusterer,drawing';
-    document.head.appendChild(mapScript);
-
     useEffect(() => {
+        const mapScript = document.createElement("script");
+        mapScript.async = true;
+        mapScript.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=67d0286911f77cf3ceabfd3161f18840&autoload=false&libraries=services,clusterer,drawing';
+        document.head.appendChild(mapScript);
+
         const onLoadKakaoMap = () => {
             window.kakao.maps.load(() => {
                 const mapContainer = document.getElementById('map');
@@ -33,6 +33,17 @@ function Map() {
                 });
 
                 marker.setMap(map);
+
+                let infowindow: any = null; 
+
+                window.kakao.maps.event.addListener(marker, 'click', function() {
+                    infowindow = new window.kakao.maps.InfoWindow({
+                        content: 'Hello, World!', 
+                        removable: true
+                    });
+
+                    infowindow.open(map, marker); 
+                });
             });
         };
 
