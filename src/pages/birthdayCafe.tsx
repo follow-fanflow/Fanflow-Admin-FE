@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Header } from "../components/header";
-import Map from "../components/map";
+import Map from "../components/birthdayCafe/map";
 
 export const BirthdayCafe = () => {
 

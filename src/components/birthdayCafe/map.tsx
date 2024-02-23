@@ -6,6 +6,14 @@ declare global {
     }
 }
 
+async function fetchBirthdayCafeInfo(x: number, y: number) {
+    return {
+        name: "생일카페 이름",
+        address: "주소",
+        link: "https://twitter/링크"
+    }
+}
+
 function Map() {
     useEffect(() => {
         const mapScript = document.createElement("script");
@@ -40,13 +48,30 @@ function Map() {
 
                 let infowindow: any = null; 
 
-                window.kakao.maps.event.addListener(marker, 'click', function() {
-                    infowindow = new window.kakao.maps.InfoWindow({
-                        content: 'Hello, World!', 
-                        removable: true
-                    });
+                window.kakao.maps.event.addListener(marker, 'click', async function() {
+                    const info = await fetchBirthdayCafeInfo(markerPosition.getLat(), markerPosition.getLng());
+                    const content = `
+                        <div style="display: flex; flex-direction: column; background-color: white; padding: 10px; border: 1px solid #D9D9D9; border-radius: 5px; gap: 4px;">
+                            <div style="color: black; font-size: 17px">${info.name}</div>
+                            <div style="color: black; font-size: 13px">${info.address}</div>
+                            <a href="${info.link}" style="color: #008890; text-decoration: none; font-size: 13px">https://twitter/링크</a>
+                            <div>
+                                <button style="width: 55px; height: 25px; border-radius: 7px; cursor: pointer; background-color: #F96C85; color: white; border: none; margin-right: 4px;">수락</button>
+                                <button style="width: 55px; height: 25px; cursor: pointer; background-color: white; border: 1px solid #F96C85; color: #F96C85; border-radius: 7px">거절</button>
+                            </div>
+                        </div>
+                    `
 
-                    infowindow.open(map, marker); 
+                    if (infowindow) {
+                        infowindow.close();
+                    }
+
+                    infowindow = new window.kakao.maps.InfoWindow({
+                        content: content,
+                        removable: true
+                    })
+                    
+                    infowindow.open(map, marker);
                 });
             });
         };
