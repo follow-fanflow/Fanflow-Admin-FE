@@ -14,28 +14,26 @@ interface Cafe {
     link: string;
 }
 
-async function fetchBirthdayCafeInfo(id: number): Promise<{ name: string, address: string, link: string } | null> {
-    try {
-        const response = await fetch(`/place/admin/${id}`, {
-            method: 'GET'
-        });
-        if (!response.ok) {
-            throw new Error('카페 정보 가져오기 실패');
-        }
-        const cafeInfo = await response.json();
-        return {
-            name: cafeInfo.name,
-            address: cafeInfo.address,
-            link: cafeInfo.link
-        };
-    } catch (error) {
-        console.error("카페 정보 가져오는 중 에러: ", error);
-        return null;
-    }
-}
-
 function Map(): JSX.Element {
     const [cafes, setCafes] = useState<Cafe[]>([]);
+
+    useEffect(() => {
+        const fetchCafes = async () => {
+            try {
+                const response = await fetch("/place/admin");
+                if (!response.ok) {
+                    throw new Error("카페 정보를 가져오는데 실패했습니다.");
+                }
+                const data = await response.json();
+
+                setCafes(data);
+            } catch (error) {
+                console.error("카페 정보를 가져오는 중 에러 발생:", error);
+            }
+        };
+
+        fetchCafes();
+    }, []);
 
     useEffect(() => {
         const mapScript: HTMLScriptElement = document.createElement("script");
